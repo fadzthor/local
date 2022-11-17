@@ -57,9 +57,11 @@ class JenisObatController extends Controller
      * @param  \App\Models\JenisObat  $jenisObat
      * @return \Illuminate\Http\Response
      */
-    public function show(JenisObat $jenisObat)
+    public function show($id)
     {
         // tampil data
+        $jenisObat = JenisObat::find($id);
+        // dd($jenisObat);
         return view('jenis_obat.show',compact('jenisObat'));
     }
 
@@ -69,9 +71,10 @@ class JenisObatController extends Controller
      * @param  \App\Models\JenisObat  $jenisObat
      * @return \Illuminate\Http\Response
      */
-    public function edit(JenisObat $jenisObat)
+    public function edit($id)
     {
         //
+        $jenisObat = JenisObat::find($id);
         return view('jenis_obat.edit',compact('jenisObat'));
 
     }
@@ -83,14 +86,14 @@ class JenisObatController extends Controller
      * @param  \App\Models\JenisObat  $jenisObat
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, JenisObat $jenisObat)
+    public function update(Request $request, $id)
     {
         //
         $request->validate([
             'nama' => 'required'
         ]);
     
-        $jenisObat->update($request->all());
+        // $jenisObat->update($request->all());
     
         return redirect()->route('jenis_obat.index')
                         ->with('success','Update data berhasil!');

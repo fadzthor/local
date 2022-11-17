@@ -17,16 +17,21 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+Route::get('/jenisobat', [JenisObatController::class, 'index']);
+Route::get('/jenisobat', [JenisObatController::class, 'create']);
+Route::post('/jenisobat', [JenisObatController::class, 'store']);
+Route::get('/jenisobat/{id}', [JenisObatController::class, 'show']);
+Route::get('/jenisobat/{id}', [JenisObatController::class, 'edit']);
+Route::post('/jenisobat/update/{id}', [JenisObatController::class, 'update'])->name("jenisobat.update");
+Route::delete('/jenisobat/{id}', [JenisObatController::class, 'destroy']);
 Route::get('/', function () {
     return view('welcome');
 });
-Route::resources([
-    'jenisobat', JenisObatController::class,
-    'obat', ObatControllers::class,
-    'obatmasuk', ObatMasukControllers::class,
-    'obatkeluar', ObatKeluarControllers::class
-]);
+// Route::resources([
+//     'jenisobat', JenisObatController::class
+
+// ]);
+// Route::resource('jenisobat', JenisObatController::class);
 // Route::resource('jenisobat', JenisObatController::class);
 // Route::resource('obat', ObatControllers::class);
 // Route::resource('obatmasuk', ObatMasukControllers::class);
@@ -45,14 +50,14 @@ Route::resources([
 //     return view('obat_keluar/index');
 // });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+// Route::get('/dashboard', function () {
+//     return view('dashboard');
+// })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-});
+// Route::middleware('auth')->group(function () {
+//     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+//     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+//     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+// });
 
-require __DIR__.'/auth.php';
+// require __DIR__.'/auth.php';

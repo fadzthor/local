@@ -17,6 +17,7 @@
         </div>
     </div>
    
+    {{-- menampilkan pesan sukses --}}
     @if ($message = Session::get('success'))
         <div class="alert alert-success">
             <p>{{ $message }}</p>
@@ -33,27 +34,32 @@
         </tr>
         @foreach ($jenis_obats as $jenisObat)
         <tr>
-            <td>{{ ++$i }}</td>
+            <td>{{ $jenisObat->id }}</td>
+            <td>{{ $jenisObat->nama }}</td>
             <td>{{ $jenisObat->nama }}</td>
             <td>{{ $jenisObat->created_at }}</td>
             <td>{{ $jenisObat->updated_at }}</td>
             <td>
-                <form action="{{ route('jenisobat.destroy',$jenisObat->id) }}" method="POST">
-   
+                
+              <form action="{{ route('jenisobat.destroy',$jenisObat->id) }}" method="POST">
                     <a class="btn btn-info" href="{{ route('jenisobat.show',$jenisObat->id) }}">Show</a>
     
                     <a class="btn btn-primary" href="{{ route('jenisobat.edit',$jenisObat->id) }}">Edit</a>
+                    {{-- <a class="btn btn-danger" onclick="return confirm('Are you sure?')" href="{{route('jenisobat.destroy', $jenisObat->id)}}"><i class="fa fa-trash"></i></a> --}}
    
+                  
                     @csrf
+                    
                     @method('DELETE')
-      
-                    <button type="submit" class="btn btn-danger">Delete</button>
+                    {{-- <a class="btn btn-danger" onclick="return confirm('Are you sure?')" href="{{route('jenisobat.destroy', $jenisObat->id)}}"><i class="fa fa-trash"></i></a> --}}
+                    <button type="submit" onclick="return confirm('Are you sure?')"class="btn btn-danger">Delete</button>
                 </form>
             </td>
         </tr>
         @endforeach
     </table>
-  
+    
+    {{-- menampilkan pagination --}}
     {!! $jenis_obats->links() !!}
   </div>
 </div>

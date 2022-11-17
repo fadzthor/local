@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\JenisObat;
 use Illuminate\Http\Request;
 
+// tipe data array di looping, datanya dikeluarkan sebagai objek
+
 class JenisObatController extends Controller
 {
     /**
@@ -15,10 +17,11 @@ class JenisObatController extends Controller
     public function index()
     {
         // index data
+        // jenis obats as array
         $jenis_obats = JenisObat::latest()->paginate(6);
     
-        return view('jenis_obat.index',compact('jenis_obats'))
-            ->with('i', (request()->input('page', 1) - 1) * 6);
+        return view('jenis_obat.index',compact('jenis_obats'));
+            // ->with('i', (request()->input('page', 1) - 1) * 6);
     }
 
     /**
@@ -40,15 +43,29 @@ class JenisObatController extends Controller
      */
     public function store(Request $request)
     {
-        // store data
+        // 1 VALIDEATE form nama
+        // kalo validasi ggagal baka; dibalkin ke halaman create jenis obat 
         $request->validate([
             'nama' => 'required'            
+
+            // ,'email' => 'required|email'            
         ]);
     
+        // 2 store data atau menyimpan data ke dalam database
+        // eloquent bisa
         JenisObat::create($request->all());
+
+        // query builder juga bisa
+        // DB::table('jenis_obats')->insert([
+        //     'nama' => $request->nama
+        // ]);
      
+        // 3 menampilkan pesan sukses sewaktu berhasil input data
         return redirect()->route('jenisobat.index')
                         ->with('success','Input data berhasil!');
+
+
+
     }
 
     /**
@@ -86,7 +103,7 @@ class JenisObatController extends Controller
      * @param  \App\Models\JenisObat  $jenisObat
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $id) // this id requested to update
     {
         //
         $request->validate([
@@ -94,8 +111,13 @@ class JenisObatController extends Controller
         ]);
     
         // $jenisObat->update($request->all());
-    
-        return redirect()->route('jenis_obat.index')
+        // update requested id
+        // update nama with value dari form input
+        JenisObat::where('id', $id)->update([
+            'nama' => $request->nama // get value form name =  nama
+        ]);
+        
+        return redirect()->route('jenisobat.index')
                         ->with('success','Update data berhasil!');
     }
 
@@ -105,10 +127,16 @@ class JenisObatController extends Controller
      * @param  \App\Models\JenisObat  $jenisObat
      * @return \Illuminate\Http\Response
      */
-    public function destroy(JenisObat $jenisObat)
+    public function destroy($id)
     {
         // destroy data
-        $jenisObat->delete();
+        // $jenisObat->delete();
+
+        // eloquent
+        JenisObat::find($id)->delete();
+
+        // query builder
+        // JenisObat::where('id',$id)->delete();
     
         return redirect()->route('jenisobat.index')
                         ->with('success','Hapus data berhasil!');

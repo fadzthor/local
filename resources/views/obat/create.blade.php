@@ -42,11 +42,11 @@
                 </ul>
             </div>
             @endif
-            <form action="{{ route('jenisobat.store') }}" method="POST">
+            <form action="{{ route('obat.store') }}" method="POST">
               @csrf
               <div class="card-body">
                 <div class="form-group">
-                  <label for="">Jenis Obat</label>                                
+                  <label for="">Obat</label>                                
                   <input type="text" name="nama" class="form-control" placeholder="Masukkan Jenis Obat">
                 </div>
               </div>

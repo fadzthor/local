@@ -5,14 +5,14 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Jenis Obat</h1>
-                    <button class="btn btn-success"><a class="" href="{{ route('jenisobat.create') }}">
+                    <h1>Obat Masuk</h1>
+                    <button class="btn btn-success"><a class="" href="{{ route('obatmasuk.create') }}">
                             Insert</a></button>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item active">jenis-obat</li>
+                        {{-- <li class="breadcrumb-item"><a href="#">Home</a></li> --}}
+                        <li class="breadcrumb-item active">Obat Masuk</li>
                     </ol>
                 </div>
             </div>
@@ -30,7 +30,7 @@
 
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title">Daftar Jenis Obat</h3>
+                            <h3 class="card-title">Obat Masuk</h3>
 
                         </div>
                         <!-- /.card-header -->
@@ -39,27 +39,33 @@
                                 <thead>
                                     <tr>
                                         <th>ID</th>
-                                        <th>Jenis Obat</th>
+                                        <th>Distributor</th>
+                                        <th>Obat</th>
+                                        <th>Jumlah</th>
+                                        <th>Tanggal Masuk</th>                                        
                                         <th>Tanggal Ditambahkan</th>
                                         <th>Tanggal Diperbarui</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($jenis_obats as $jenisObat)
+                                    @foreach ($obat_masuks as $obatMasuk)
                                         <tr>
-                                            <td>{{ $jenisObat->id }}</td>
-                                            <td>{{ $jenisObat->nama }}</td>
-                                            <td>{{ $jenisObat->created_at }}</td>
-                                            <td>{{ $jenisObat->updated_at }}</td>
+                                            <td>{{ $obatMasuk->id }}</td>
+                                            <td>{{ $obatMasuk->distributor }}</td>
+                                            <td>{{ $obatMasuk->id_obat }}</td>
+                                            <td>{{ $obatMasuk->jumlah }}</td>
+                                            <td>{{ $obatMasuk->tanggal_masuk }}</td>                                            
+                                            <td>{{ $obatMasuk->created_at }}</td>
+                                            <td>{{ $obatMasuk->updated_at }}</td>
                                             <td>
-                                                <form action="{{ route('jenisobat.destroy', $jenisObat->id) }}"
+                                                <form action="{{ route('obatmasuk.destroy', $obatMasuk->id) }}"
                                                     method="POST">
                                                     <a class="btn btn-info"
-                                                        href="{{ route('jenisobat.show', $jenisObat->id) }}">Show</a>
+                                                        href="{{ route('obatmasuk.show', $obatMasuk->id) }}">Show</a>
 
                                                     <a class="btn btn-primary"
-                                                        href="{{ route('jenisobat.edit', $jenisObat->id) }}">Edit</a>
+                                                        href="{{ route('obatmasuk.edit', $obatMasuk->id) }}">Edit</a>
 
                                                     @csrf
                                                     @method('DELETE')

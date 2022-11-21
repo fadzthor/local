@@ -12,4 +12,10 @@ class JenisObat extends Model
     protected $fillable = [
         'id','nama','created_at','updated_at'
     ];
+    
+    public function Obat()
+    {
+        return $this->belongsTo(Obat::class);
+    }
 }
+

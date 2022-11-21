@@ -6,11 +6,11 @@
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h1>Jenis Obat</h1>
+          <h1>Daftar Obat</h1>
         </div>
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
-            <li class="breadcrumb-item"><a href="#">Jenis Obat</a></li>
+            <li class="breadcrumb-item"><a href="#">Daftar Obat</a></li>
             <li class="breadcrumb-item active">Tambah</li>
           </ol>
         </div>
@@ -27,7 +27,7 @@
           <!-- general form elements -->
           <div class="card card-primary">
             <div class="card-header">
-              <h3 class="card-title">Tambah Jenis Obat</h3>
+              <h3 class="card-title">Tambah Daftar Obat</h3>
             </div>
             <!-- /.card-header -->
             <!-- form start -->
@@ -46,15 +46,78 @@
               @csrf
               <div class="card-body">
                 <div class="form-group">
-                  <label for="">Obat</label>                                
-                  <input type="text" name="nama" class="form-control" placeholder="Masukkan Jenis Obat">
+                  <label for="">ID</label>                                
+                  <input type="number" name="id" class="form-control" placeholder="ID Obat">
+                </div>
+
+                <div class="form-group">
+                  <label>Jenis Obat</label>
+                  
+                  <select class="form-control">
+                  
+                    <option>{{ $Obat->id_jenis_obat }}</option>                    
+                  </select>
+                  
+                </div>
+
+                {{-- <div class="form-group">
+                  <label>Jenis Obat</label>
+                  {{ $jenisObat->nama }}
+                  <select class="form-control">
+                    @foreach ($obats as $Obat)
+                    <option>{{ $Obat->id_jenis_obat }}</option>                    
+                  </select>
+                  @endforeach
+                </div> --}}
+
+
+                  {{-- <select class="form-control">
+                    @foreach ($obatlist as $item)                     
+                    <option value="id">Pilihan</option>
+                       
+                    <option>{{ $item->JenisObat->id }}</option>   
+                    @endforeach
+                  </select> --}}
+                  {{-- <div class="form-group">
+                    <label>Jenis Obat</label>
+                    @foreach($obats as $Obat)
+                    <select class="form-control">
+                      @foreach($Obat->JenisObat()->get() as $item)
+                      <option>{{ $item->$item }}</option>                       
+                      @endforeach
+                    </select>
+                    @endforeach
+                  </div> --}}
+                <div class="form-group">
+                  <label for="">Nama Obat</label>                                
+                  <input type="text" name="nama_obat" class="form-control" placeholder="Nama Obat">
+                </div>
+                <div class="form-group">
+                  <label for="">Harga</label>                                
+                  <input type="number" name="harga" class="form-control" placeholder="Harga">
+                </div>
+                <div class="form-group">
+                  <label for="">Tanggal Kadaluwarsa</label>                                
+                  <input type="date" name="tanggal_kadaluarsa" class="form-control" placeholder="Harga">
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputFile">Gambar</label>
+                  <div class="input-group">
+                    <div class="custom-file">
+                      <input type="file" class="custom-file-input" id="exampleInputFile">
+                      <label class="custom-file-label" for="exampleInputFile">Piih Gambar</label>
+                    </div>
+                    <div class="input-group-append">
+                      <span class="input-group-text">Upload</span>
+                    </div>
+                  </div>
                 </div>
               </div>
               <!-- /.card-body -->
 
               <div class="card-footer">
                 <button type="submit" class="btn btn-primary">Tambah</button>                               
-                <button type="submit" class="btn btn-default float-right"><a class="" href="{{ route('jenisobat.index') }}"> Batal</a></button>
+                <button type="submit" class="btn btn-default float-right"><a class="" href="{{ route('obat.index') }}"> Batal</a></button>
               </div>                               
             </form>
           </div>

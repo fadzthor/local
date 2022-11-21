@@ -17,7 +17,7 @@ class ObatMasukController extends Controller
         //
         $obat_masuks = ObatMasuk::latest()->paginate(5);
     
-        return view('obat_masuk.index',compact('obat_masukss'));
+        return view('obat_masuk.index',compact('obat_masuks'));
     }
 
     /**

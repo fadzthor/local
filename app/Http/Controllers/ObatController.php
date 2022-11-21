@@ -15,8 +15,8 @@ class ObatController extends Controller
     public function index()
     {
         //
-        $obats = Obat::latest()->paginate(5);
-    
+        
+        $obats = Obat::latest()->paginate(5);    
         return view('obat.index',compact('obats'));
     }
 
@@ -39,9 +39,9 @@ class ObatController extends Controller
      */
     public function store(Request $request)
     {
-            // kalo validasi ggagal baka; dibalkin ke halaman create jenis obat 
+            // kalo validasi gagal bakal dibalkin ke halaman create jenis obat 
             $request->validate([
-                'nama' => 'required'            
+                'nama-obat' => 'required'            
     
                 // ,'email' => 'required|email'            
             ]);
@@ -102,14 +102,29 @@ class ObatController extends Controller
     {
         //
         $request->validate([
-            'nama' => 'required'
+            'nama-obat' => 'required',
+            'stok' => 'required',
+            'harga' => 'required',
+            'tanggal-kadaluarsa' => 'required',
+        //     id',
+        // 'nama_obat',
+        // 'stok',
+        // 'harga',
+        // 'gambar',
+        // 'tanggal_kadaluarsa',
+        // 'created_at',
+        // 'updated_at',
+        // 'id_jenis_obat'
         ]);
     
         // $jenisObat->update($request->all());
         // update requested id
         // update nama with value dari form input
         Obat::where('id', $id)->update([
-            'nama' => $request->nama // get value form name =  nama
+            'nama-obat' => $request->nama_obat, // get value form name =  nama
+            'stok' => $request->stok,
+            'harga' => $request->harga,
+            'tanggal-kadaluarsa' => $request->tanggal_kadaluarsa
         ]);
         
         return redirect()->route('obat.index')

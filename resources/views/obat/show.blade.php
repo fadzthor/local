@@ -6,11 +6,11 @@
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h1>Jenis Obat</h1>
+          <h1>Daftar Obat</h1>
         </div>
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
-            <li class="breadcrumb-item"><a href="#">Jenis Obat</a></li>
+            <li class="breadcrumb-item"><a href="#">Daftar Obat</a></li>
             <li class="breadcrumb-item active">Detail</li>
           </ol>
         </div>
@@ -29,23 +29,32 @@
             <div class="card card-primary card-outline">
                 <div class="card-body box-profile">
                     
-                  <h3 class="profile-username text-center">Detail Jenis Obat</h3>
+                  <h3 class="profile-username text-center">Detail Daftar Obat</h3>
   
                   <ul class="list-group list-group-unbordered mb-3">
                     <li class="list-group-item">
-                      <b>ID Jenis Obat</b> <a class="float-right">{{ $jenisObat->id }}</a>
+                      <b>ID</b> <a class="float-right">{{ $Obat->id }}</a>
                     </li>
                     <li class="list-group-item">
-                        <b>Jenis Obat</b> <a class="float-right">{{ $jenisObat->nama }}</a>
+                      <b>Jenis Obat</b> <a class="float-right">{{ $Obat->id_jenis_obat }}</a>
+                    </li>
+                    <li class="list-group-item">
+                      <b>Stok</b> <a class="float-right">{{ $Obat->stok }}</a>
+                    </li>
+                    <li class="list-group-item">
+                      <b>Harga</b> <a class="float-right">{{ $Obat->harga }}</a>
+                    </li>
+                    <li class="list-group-item">
+                        <b>Tanggal Kadaluwarsa</b> <a class="float-right">{{ $Obat->tanggal_kadaluarsa }}</a>
                       </li>
                     <li class="list-group-item">
-                        <b>Tanggal Dibuat</b> <a class="float-right">{{ $jenisObat->created_at }}</a>
+                        <b>Tanggal Dibuat</b> <a class="float-right">{{ $Obat->created_at }}</a>
                       </li>
                     <li class="list-group-item">
-                      <b>Tanggal Diperbarui</b> <a class="float-right">{{ $jenisObat->updated_at }}</a>
+                      <b>Tanggal Diperbarui</b> <a class="float-right">{{ $Obat->updated_at }}</a>
                     </li>                    
                   </ul>                  
-                  <a href="{{ route('jenisobat.index') }}" class="btn bg-gray btn-block"><b>Kembali</b></a>
+                  <a href="{{ route('obat.index') }}" class="btn bg-gray btn-block"><b>Kembali</b></a>
                 </div>
                 <!-- /.card-body -->
               </div>

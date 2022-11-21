@@ -15,13 +15,17 @@ class JenisObatController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
+    {   
+        // $jenis_obats = JenisObat::latest()->paginate(5);
+    
+        // return view('jenis_obat.index',compact('jenis_obats'))
+        //     ->with('i', (request()->input('page', 1) - 1) * 5);
         // index data
         // jenis obats as array
-        $jenis_obats = JenisObat::latest()->paginate(6);
+        $jenis_obats = JenisObat::latest()->paginate(5);
     
         return view('jenis_obat.index',compact('jenis_obats'));
-            // ->with('i', (request()->input('page', 1) - 1) * 6);
+            
     }
 
     /**

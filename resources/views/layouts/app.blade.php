@@ -135,8 +135,6 @@
 
 
 
-
-
 <!-- Page specific script -->
 
 <!-- Form General -->
@@ -286,10 +284,9 @@
 
 <!-- Page specific jenisobat -->
 <script>$jenis_obats as example2;</script>
+<script>$obats as example2;</script>
 <script>$obat_masuks as example2;</script>
 <script>$obat_keluars as example2;</script>
-<script>$obats as example2;</script>
-
 
 <script>
   $(function () {

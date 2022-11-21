@@ -14,6 +14,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::group(['namespace' => 'App\Http\Controllers'], function(){
+    Route::prefix('dashboard')->group(function(){
+        Route::get('/', 'DashboardController@index')->name('dashboard.index');  
+    });
     Route::prefix('jenis-obat')->group(function(){
         Route::get('/', 'JenisObatController@index')->name('jenisobat.index');
         Route::get('create', 'JenisObatController@create')->name('jenisobat.create');

@@ -12,11 +12,11 @@
          <!-- Sidebar user (optional) -->
          <div class="user-panel mt-3 pb-3 mb-3 d-flex">
              <div class="image">
-                 <img src="https://avatars.githubusercontent.com/u/55814318?v=4" class="img-circle elevation-2"
+                 <img src="http://microdataindonesia.co.id/media/images/web/mcdt.png" class="img-circle elevation-2"
                      alt="User Image">
              </div>
              <div class="info">
-                 <a href="#" class="d-block">Fadzlan Thoriq</a>
+                 <a href="#" class="d-block">Users</a>
              </div>
          </div>
 
@@ -39,6 +39,14 @@
                  data-accordion="false">
                  <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
+               <li class="nav-item">
+                <a href="{{ route('dashboard.index') }}" class="nav-link">
+                    <i class="nav-icon fas fa-tachometer-alt"></i>
+                    <p>
+                        Dashboard
+                    </p>
+                </a>
+            </li>
                  <li class="nav-item">
                      <a href="{{ route('jenisobat.index') }}" class="nav-link">
                          <i class="nav-icon far fa-image"></i>
@@ -49,7 +57,7 @@
                  </li>
                  <li class="nav-item">
                      <a href="{{ route('obat.index') }}" class="nav-link">
-                         <i class="nav-icon far fa-image"></i>
+                        <i class="far fa-circle nav-icon"></i>
                          <p>
                              Daftar Obat
                          </p>

@@ -49,7 +49,7 @@
             </li>
                  <li class="nav-item">
                      <a href="{{ route('jenisobat.index') }}" class="nav-link">
-                         <i class="nav-icon far fa-image"></i>
+                        <i class="nav-icon fas fa-edit"></i>
                          <p>
                              Jenis Obat
                          </p>
@@ -57,7 +57,7 @@
                  </li>
                  <li class="nav-item">
                      <a href="{{ route('obat.index') }}" class="nav-link">
-                        <i class="far fa-circle nav-icon"></i>
+                        <i class="nav-icon fas fa-edit"></i>
                          <p>
                              Daftar Obat
                          </p>
@@ -65,7 +65,7 @@
                  </li>
                  <li class="nav-item">
                      <a href="{{ route('obatmasuk.index') }}" class="nav-link">
-                         <i class="nav-icon far fa-image"></i>
+                        <i class="nav-icon fas fa-edit"></i>
                          <p>
                              Obat Masuk
                          </p>
@@ -73,7 +73,7 @@
                  </li>
                  <li class="nav-item">
                      <a href="{{ route('obatkeluar.index') }}" class="nav-link">
-                         <i class="nav-icon far fa-image"></i>
+                        <i class="nav-icon fas fa-edit"></i>
                          <p>
                              Obat Keluar
                          </p>

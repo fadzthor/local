@@ -15,9 +15,9 @@ class ObatController extends Controller
     public function index()
     {
         //
-        
         $obats = Obat::latest()->paginate(5);    
         return view('obat.index',compact('obats'));
+        
     }
 
     /**
@@ -28,7 +28,13 @@ class ObatController extends Controller
     public function create()
     {
         // create menu
-        return view('obat.create');
+        $obats = Obat::all(); 
+        // dd($obats);
+        return view('obat.create',['obats'=>$obats]);
+        
+
+        // $obats = Obat::find($id);
+        // return view('obat.create')->with('obats',$obats); 
     }
 
     /**

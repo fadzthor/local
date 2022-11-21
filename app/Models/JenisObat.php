@@ -15,7 +15,7 @@ class JenisObat extends Model
     
     public function Obat()
     {
-        return $this->belongsTo(Obat::class);
+        return $this->hasMany(Obat::class);
     }
 }
 

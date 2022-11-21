@@ -21,8 +21,8 @@ class Obat extends Model
         'id_jenis_obat'
     ];
 
-    public function JenisObat()
+    public function jenisObat()
     {
-        return $this->hasMany(JenisObat::class);
+        return $this->belongsTo(JenisObat::class, 'nama');
     }
 }

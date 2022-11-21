@@ -50,44 +50,17 @@
                   <input type="number" name="id" class="form-control" placeholder="ID Obat">
                 </div>
 
-                <div class="form-group">
-                  <label>Jenis Obat</label>
-                  
-                  <select class="form-control">
-                  
-                    <option>{{ $Obat->id_jenis_obat }}</option>                    
-                  </select>
-                  
-                </div>
-
-                {{-- <div class="form-group">
-                  <label>Jenis Obat</label>
-                  {{ $jenisObat->nama }}
-                  <select class="form-control">
-                    @foreach ($obats as $Obat)
-                    <option>{{ $Obat->id_jenis_obat }}</option>                    
-                  </select>
-                  @endforeach
-                </div> --}}
-
-
-                  {{-- <select class="form-control">
-                    @foreach ($obatlist as $item)                     
-                    <option value="id">Pilihan</option>
-                       
-                    <option>{{ $item->JenisObat->id }}</option>   
-                    @endforeach
-                  </select> --}}
-                  {{-- <div class="form-group">
+                <div class="form-group">                  
                     <label>Jenis Obat</label>
                     @foreach($obats as $Obat)
                     <select class="form-control">
-                      @foreach($Obat->JenisObat()->get() as $item)
-                      <option>{{ $item->$item }}</option>                       
+                      @foreach($Obat->jenisObat()->get() as $nama)
+                      <option>{{ $nama->nama }}</option>                       
                       @endforeach
                     </select>
                     @endforeach
-                  </div> --}}
+                </div>
+
                 <div class="form-group">
                   <label for="">Nama Obat</label>                                
                   <input type="text" name="nama_obat" class="form-control" placeholder="Nama Obat">

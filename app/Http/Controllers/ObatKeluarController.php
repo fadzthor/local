@@ -15,10 +15,9 @@ class ObatKeluarController extends Controller
     public function index()
     {
         //
-        $obatkeluar = ObatKeluar::latest()->paginate(5);
+        $obat_keluars = ObatKeluar::latest()->paginate(5);
     
-        return view('obat_keluar/index',compact('obatkeluar'))
-            ->with('i', (request()->input('page', 1) - 1) * 5);
+        return view('obat_keluar.index',compact('obat_keluars'));
     }
 
     /**
@@ -28,7 +27,8 @@ class ObatKeluarController extends Controller
      */
     public function create()
     {
-        //
+                // create menu
+                return view('obat_keluar.create');
     }
 
     /**
@@ -39,7 +39,26 @@ class ObatKeluarController extends Controller
      */
     public function store(Request $request)
     {
-        //
+         // 1 VALIDEATE form nama
+        // kalo validasi ggagal baka; dibalkin ke halaman create jenis obat 
+        $request->validate([
+            'nama' => 'required'            
+
+            // ,'email' => 'required|email'            
+        ]);
+    
+        // 2 store data atau menyimpan data ke dalam database
+        // eloquent bisa
+        ObatKeluar::create($request->all());
+
+        // query builder juga bisa
+        // DB::table('jenis_obats')->insert([
+        //     'nama' => $request->nama
+        // ]);
+     
+        // 3 menampilkan pesan sukses sewaktu berhasil input data
+        return redirect()->route('obatkeluar.index')
+                        ->with('success','Input data berhasil!');
     }
 
     /**
@@ -48,9 +67,13 @@ class ObatKeluarController extends Controller
      * @param  \App\Models\ObatKeluar  $obatKeluar
      * @return \Illuminate\Http\Response
      */
-    public function show(ObatKeluar $obatKeluar)
+    public function show($id)
     {
-        //
+          // tampil data
+          $obatKeluar = ObatKeluar::find($id);
+          // dd($jenisObat);
+          return view('obat_keluar.show',compact('obatKeluar'));
+      
     }
 
     /**
@@ -59,9 +82,12 @@ class ObatKeluarController extends Controller
      * @param  \App\Models\ObatKeluar  $obatKeluar
      * @return \Illuminate\Http\Response
      */
-    public function edit(ObatKeluar $obatKeluar)
+    public function edit($id)
     {
-        //
+         //
+         $obatKeluar = ObatKeluar::find($id);
+         return view('obat_keluar.edit',compact('obatKeluar'));
+ 
     }
 
     /**
@@ -71,9 +97,22 @@ class ObatKeluarController extends Controller
      * @param  \App\Models\ObatKeluar  $obatKeluar
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, ObatKeluar $obatKeluar)
+    public function update(Request $request, $id)
     {
         //
+        $request->validate([
+            'nama' => 'required'
+        ]);
+    
+        // $jenisObat->update($request->all());
+        // update requested id
+        // update nama with value dari form input
+        ObatKeluar::where('id', $id)->update([
+            'nama' => $request->nama // get value form name =  nama
+        ]);
+        
+        return redirect()->route('obatkeluar.index')
+                        ->with('success','Update data berhasil!');
     }
 
     /**
@@ -82,8 +121,15 @@ class ObatKeluarController extends Controller
      * @param  \App\Models\ObatKeluar  $obatKeluar
      * @return \Illuminate\Http\Response
      */
-    public function destroy(ObatKeluar $obatKeluar)
+    public function destroy($id)
     {
         //
+        ObatKeluar::find($id)->delete();
+
+        // query builder
+        // JenisObat::where('id',$id)->delete();
+    
+        return redirect()->route('obatkeluar.index')
+                        ->with('success','Hapus data berhasil!');
     }
 }

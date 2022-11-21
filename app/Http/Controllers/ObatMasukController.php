@@ -15,10 +15,9 @@ class ObatMasukController extends Controller
     public function index()
     {
         //
-        $obatmasuk = ObatMasuk::latest()->paginate(5);
+        $obat_masuks = ObatMasuk::latest()->paginate(5);
     
-        return view('obat_masuk/index',compact('obatmasuk'))
-            ->with('i', (request()->input('page', 1) - 1) * 5);
+        return view('obat_masuk.index',compact('obat_masukss'));
     }
 
     /**
@@ -29,6 +28,7 @@ class ObatMasukController extends Controller
     public function create()
     {
         //
+        return view('obat_masuk.create');
     }
 
     /**
@@ -40,6 +40,24 @@ class ObatMasukController extends Controller
     public function store(Request $request)
     {
         //
+        $request->validate([
+            'nama' => 'required'            
+
+            // ,'email' => 'required|email'            
+        ]);
+    
+        // 2 store data atau menyimpan data ke dalam database
+        // eloquent bisa
+        ObatMasuk::create($request->all());
+
+        // query builder juga bisa
+        // DB::table('jenis_obats')->insert([
+        //     'nama' => $request->nama
+        // ]);
+     
+        // 3 menampilkan pesan sukses sewaktu berhasil input data
+        return redirect()->route('obatmasuk.index')
+                        ->with('success','Input data berhasil!');
     }
 
     /**
@@ -48,9 +66,13 @@ class ObatMasukController extends Controller
      * @param  \App\Models\ObatMasuk  $obatMasuk
      * @return \Illuminate\Http\Response
      */
-    public function show(ObatMasuk $obatMasuk)
+    public function show($id)
     {
         //
+         // tampil data
+         $obatMasuk = ObatMasuk::find($id);
+         // dd($jenisObat);
+         return view('obat_masuk.show',compact('obatMasuk'));
     }
 
     /**
@@ -59,9 +81,11 @@ class ObatMasukController extends Controller
      * @param  \App\Models\ObatMasuk  $obatMasuk
      * @return \Illuminate\Http\Response
      */
-    public function edit(ObatMasuk $obatMasuk)
+    public function edit($id)
     {
         //
+        $obatMasuk = ObatMasuk::find($id);
+        return view('obat_masuk.edit',compact('obatMasuk'));
     }
 
     /**
@@ -71,9 +95,22 @@ class ObatMasukController extends Controller
      * @param  \App\Models\ObatMasuk  $obatMasuk
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, ObatMasuk $obatMasuk)
+    public function update(Request $request, $id)
     {
         //
+        $request->validate([
+            'nama' => 'required'
+        ]);
+    
+        // $jenisObat->update($request->all());
+        // update requested id
+        // update nama with value dari form input
+        ObatMasuk::where('id', $id)->update([
+            'nama' => $request->nama // get value form name =  nama
+        ]);
+        
+        return redirect()->route('obatmasuk.index')
+                        ->with('success','Update data berhasil!');
     }
 
     /**
@@ -82,8 +119,15 @@ class ObatMasukController extends Controller
      * @param  \App\Models\ObatMasuk  $obatMasuk
      * @return \Illuminate\Http\Response
      */
-    public function destroy(ObatMasuk $obatMasuk)
+    public function destroy($id)
     {
         //
+        ObatMasuk::find($id)->delete();
+
+        // query builder
+        // JenisObat::where('id',$id)->delete();
+    
+        return redirect()->route('obatmasuk.index')
+                        ->with('success','Hapus data berhasil!');
     }
 }

@@ -40,7 +40,7 @@
                  <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
                  <li class="nav-item">
-                     <a href="../gallery.html" class="nav-link">
+                     <a href="{{ route('jenisobat.index') }}" class="nav-link">
                          <i class="nav-icon far fa-image"></i>
                          <p>
                              Jenis Obat
@@ -48,7 +48,7 @@
                      </a>
                  </li>
                  <li class="nav-item">
-                     <a href="../gallery.html" class="nav-link">
+                     <a href="{{ route('obat.index') }}" class="nav-link">
                          <i class="nav-icon far fa-image"></i>
                          <p>
                              Daftar Obat
@@ -56,7 +56,7 @@
                      </a>
                  </li>
                  <li class="nav-item">
-                     <a href="../gallery.html" class="nav-link">
+                     <a href="{{ route('obatmasuk.index') }}" class="nav-link">
                          <i class="nav-icon far fa-image"></i>
                          <p>
                              Obat Masuk
@@ -64,7 +64,7 @@
                      </a>
                  </li>
                  <li class="nav-item">
-                     <a href="../gallery.html" class="nav-link">
+                     <a href="{{ route('obatkeluar.index') }}" class="nav-link">
                          <i class="nav-icon far fa-image"></i>
                          <p>
                              Obat Keluar

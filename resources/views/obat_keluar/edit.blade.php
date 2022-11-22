@@ -41,19 +41,31 @@
                   </ul>
               </div>
               @endif
-              <form class="form-horizontal" action="{{ route('jenisobat.update',$jenisObat->id) }}" method="POST">
+              <form class="form-horizontal" action="{{ route('obatkeluar.update',$obatKeluar->id) }}" method="POST">
                 @csrf
                 <div class="card-body">
                   <div class="form-group">
-                    <label for="">Jenis Obat</label>                  
-                    <input type="text" name="nama" value="{{ $jenisObat->nama }}" class="form-control" placeholder="Masukkan Jenis Obat">
+                    <label for="">Pembeli</label>                  
+                    <input type="text" name="nama_pasien" value="{{ $obatKeluar->nama_pasien }}" class="form-control" placeholder="Pembeli">
+                  </div>
+                  <div class="form-group">
+                    <label for="">Obat</label>                  
+                    <input type="text" name="id_obat" value="{{ $obatKeluar->id_obat }}" class="form-control" placeholder="Obat">
+                  </div>
+                  <div class="form-group">
+                    <label for="">Jumlah</label>                  
+                    <input type="number" name="jumlah" value="{{ $obatKeluar->jumlah }}" class="form-control" placeholder="Jumlah">
+                  </div>
+                  <div class="form-group">
+                    <label for="">Pembayaran</label>                  
+                    <input type="number" name="jumlah_pembayaran" value="{{ $obatKeluar->jumlah_pembayaran }}" class="form-control" placeholder="Pembayaran">
                   </div>
                 </div>
                 <!-- /.card-body -->
 
                 <div class="card-footer">
                   <button type="submit" class="btn btn-primary">Ubah</button>                               
-                  <button type="submit" class="btn btn-default float-right"><a class="" href="{{ route('jenisobat.index') }}"> Batal</a></button>
+                  <button type="submit" class="btn btn-default float-right"><a class="" href="{{ route('obatkeluar.index') }}"> Batal</a></button>
                 </div>                               
               </form>
             </div>

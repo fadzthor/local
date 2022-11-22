@@ -6,11 +6,11 @@
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h1>Jenis Obat</h1>
+          <h1>Obat Keluar</h1>
         </div>
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
-            <li class="breadcrumb-item"><a href="#">Jenis Obat</a></li>
+            <li class="breadcrumb-item"><a href="#">Obat Keluar</a></li>
             <li class="breadcrumb-item active">Tambah</li>
           </ol>
         </div>
@@ -27,7 +27,7 @@
           <!-- general form elements -->
           <div class="card card-primary">
             <div class="card-header">
-              <h3 class="card-title">Tambah Jenis Obat</h3>
+              <h3 class="card-title">Tambah Obat Keluar</h3>
             </div>
             <!-- /.card-header -->
             <!-- form start -->
@@ -42,19 +42,38 @@
                 </ul>
             </div>
             @endif
-            <form action="{{ route('jenisobat.store') }}" method="POST">
+            <form action="{{ route('obatkeluar.store') }}" method="POST">
               @csrf
               <div class="card-body">
                 <div class="form-group">
-                  <label for="">Jenis Obat</label>                                
-                  <input type="text" name="nama" class="form-control" placeholder="Masukkan Jenis Obat">
+                  <label for="">Pembeli</label>                                
+                  <input type="text" name="nama-pembeli" class="form-control" placeholder="Pembeli">
+                </div>
+                <div class="form-group">                  
+                  <label>Obat</label>
+                  {{-- @foreach($obats as $Obat) --}}
+                  <select class="form-control">
+                    {{-- @foreach($Obat->jenisObat()->get() as $nama) --}}
+                    <option>option</option>
+                    <option></option>                       
+                    {{-- @endforeach --}}
+                  </select>
+                  {{-- @endforeach --}}
+              </div>
+                <div class="form-group">
+                  <label for="">Jumlah</label>                                
+                  <input type="number" name="jumlah" class="form-control" placeholder="Jumlah">
+                </div>
+                <div class="form-group">
+                  <label for="">Pembayaran</label>                                
+                  <input type="number" name="jumlah_pembayaran" class="form-control" placeholder="Pembayaran">
                 </div>
               </div>
               <!-- /.card-body -->
 
               <div class="card-footer">
                 <button type="submit" class="btn btn-primary">Tambah</button>                               
-                <button type="submit" class="btn btn-default float-right"><a class="" href="{{ route('jenisobat.index') }}"> Batal</a></button>
+                <button type="submit" class="btn btn-default float-right"><a class="" href="{{ route('obatkeluar.index') }}"> Batal</a></button>
               </div>                               
             </form>
           </div>

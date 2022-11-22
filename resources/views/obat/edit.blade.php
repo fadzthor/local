@@ -46,13 +46,13 @@
                 <div class="card-body">
                   <div class="form-group">
                     <label for="">Jenis Obat</label>                  
-                    <input type="text" name="id-jenis-obat" value="{{ $Obat->id_jenis_obat}}" class="form-control" placeholder="Pilih Jenis Obat">
+                    <input type="text" name="id_jenis_obat" value="{{ $Obat->id_jenis_obat}}" class="form-control" placeholder="Pilih Jenis Obat">
                   </div>
                 </div>
                 <div class="card-body">
                   <div class="form-group">
                     <label for="">Nama Obat</label>                  
-                    <input type="text" name="nama-obat" value="{{ $Obat->nama_obat }}" class="form-control" placeholder="Nama Obat">
+                    <input type="text" name="nama_obat" value="{{ $Obat->nama_obat }}" class="form-control" placeholder="Nama Obat">
                   </div>
                 </div>
                 <div class="card-body">
@@ -70,7 +70,7 @@
                 <div class="card-body">
                   <div class="form-group">
                     <label for="">tanggal Kadalwarsa</label>                  
-                    <input type="date" name="tanggal-kadaluarsa" value="{{ $Obat->tanggal_kadaluarsa }}" class="form-control" placeholder="Tanggal Kadaluwarsa>
+                    <input type="date" name="tanggal_kadaluarsa" value="{{ $Obat->tanggal_kadaluarsa }}" class="form-control" placeholder="Tanggal Kadaluwarsa">
                   </div>
                 </div>                
                 <div class="form-group">

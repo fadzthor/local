@@ -71,7 +71,7 @@
                 </div>
                 <div class="form-group">
                   <label for="">Tanggal Kadaluwarsa</label>                                
-                  <input type="date" name="tanggal_kadaluarsa" class="form-control" placeholder="Harga">
+                  <input type="date" name="tanggal_kadaluarsa" class="form-control" placeholder="Tanggal Kadaluwarsa">
                 </div>
                 <div class="form-group">
                   <label for="exampleInputFile">Gambar</label>

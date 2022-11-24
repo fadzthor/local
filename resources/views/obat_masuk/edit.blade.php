@@ -47,9 +47,17 @@
                   <div class="card-body">
                     <div class="form-group">
                       <label for="">Distributor</label>                  
-                      <input type="text" name="distributor" value="{{ $obatMasuk->distributor }}" class="form-control" placeholder="Pembeli">
+                      <input type="text" name="distributor" value="{{ $obatMasuk->distributor }}" class="form-control" placeholder="Distributor">
                     </div>
-                    <div class="form-group">
+                    <div class="form-group">                  
+                      <label>Obat</label> 
+                      <select class="form-control" name="id_obat">
+                        @foreach($obats as $item)
+                        <option value="{{ $item->id }}">{{ $item->nama_obat }}</option>  
+                        @endforeach
+                      </select>
+                  </div>
+                    <div class="form-group">                      
                       <label for="">Obat</label>                  
                       <input type="text" name="id_obat" value="{{ $obatMasuk->id_obat }}" class="form-control" placeholder="Obat">
                     </div>

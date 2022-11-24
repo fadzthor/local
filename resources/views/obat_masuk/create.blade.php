@@ -48,18 +48,15 @@
                 <div class="form-group">
                   <label for="">Distributor</label>                                
                   <input type="text" name="distributor" class="form-control" placeholder="Distributor">
-                </div>
+                </div>              
                 <div class="form-group">                  
-                  <label>Obat</label>
-                  {{-- @foreach($obats as $Obat) --}}
-                  <select class="form-control">
-                    {{-- @foreach($Obat->jenisObat()->get() as $nama) --}}
-                    <option>option</option>
-                    <option></option>                       
-                    {{-- @endforeach --}}
-                  </select>
-                  {{-- @endforeach --}}
-              </div>
+                    <label>Obat</label> 
+                    <select class="form-control" name="id_obat">
+                      @foreach($obats as $item)
+                      <option value="{{ $item->id }}">{{ $item->nama_obat }}</option>  
+                      @endforeach
+                    </select>
+                </div>
                 <div class="form-group">
                   <label for="">Jumlah</label>                                
                   <input type="number" name="jumlah" class="form-control" placeholder="Jumlah">

@@ -158,7 +158,7 @@ class ObatMasukController extends Controller
         //
         $obatMasuk = ObatMasuk::find($id);
         // $obatMasuk = ObatMasuk::find($id_obat);
-        DB::table('obats')->where('id',$id)->decrement('stok',$obatMasuk->jumlah);
+        DB::table('obats')->where('id',$obatMasuk->id_obat)->decrement('stok',$obatMasuk->jumlah);
         // DB::table('obats')->where('id',$id)->decrement('stok',$obatMasuk->jumlah);
        
         ObatMasuk::find($id)->delete();

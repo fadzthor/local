@@ -55,13 +55,19 @@
                                         <tr>
                                             <td>{{ $Obat->id }}</td>
                                             <td>{{ $Obat->id_jenis_obat }}</td>
+                                            {{-- <td value="{{ $Obat->id_jenis_obat === $jenisobats->id }}">{{ $jenisobats->nama }}</td> --}}
+
                                             <td>{{ $Obat->nama_obat }}</td>
                                             <td>{{ $Obat->stok }}</td>
                                             <td>{{ $Obat->harga }}</td>
                                             <td>{{ $Obat->tanggal_kadaluarsa }}</td>
                                             <td>{{ $Obat->created_at }}</td>
                                             <td>{{ $Obat->updated_at }}</td>
-                                            <td>{{ $Obat->gambar }}</td>
+                                            <td>
+                                                <img src="{{ Storage::url('public/medicine/').$Obat->gambar }}" class="rounded" style="width: 40px">
+                                            </td>
+                                            
+                                            {{-- <td>{{ $Obat->gambar }}</td> --}}
                                             <td>
                                                 <form action="{{ route('obat.destroy', $Obat->id) }}"
                                                     method="POST">
@@ -80,7 +86,7 @@
                                             </td>
                                         </tr>
                                     @endforeach
-                                </tbody>
+                                </tbody>                                
                             </table>
                         </div>
                         <!-- /.card-body -->

@@ -13,9 +13,9 @@ class JenisObat extends Model
         'id','nama','created_at','updated_at'
     ];
     
-    public function Obat()
-    {
-        return $this->hasMany(Obat::class);
-    }
+    // public function Obat()
+    // {
+    //     return $this->hasMany(Obat::class);
+    // }
 }
 

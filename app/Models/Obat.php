@@ -12,8 +12,8 @@ class Obat extends Model
     protected $fillable = [
         'id',
         'nama_obat',
-        'stok',
         'harga',
+        'stok',
         'gambar',
         'tanggal_kadaluarsa',
         'created_at',
@@ -21,8 +21,8 @@ class Obat extends Model
         'id_jenis_obat'
     ];
 
-    public function jenisObat()
-    {
-        return $this->belongsTo(JenisObat::class, 'nama');
-    }
+    // public function jenisObat()
+    // {
+    //     return $this->belongsTo(JenisObat::class, 'nama');
+    // }
 }

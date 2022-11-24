@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\ObatKeluar;
+use App\Models\Obat;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
 class ObatKeluarController extends Controller
@@ -15,7 +17,7 @@ class ObatKeluarController extends Controller
     public function index()
     {
         //
-        $obat_keluars = ObatKeluar::latest()->paginate(5);
+        $obat_keluars = ObatKeluar::latest()->get();
     
         return view('obat_keluar.index',compact('obat_keluars'));
     }
@@ -28,7 +30,8 @@ class ObatKeluarController extends Controller
     public function create()
     {
                 // create menu
-                return view('obat_keluar.create');
+                $obats = Obat::all(); 
+                return view('obat_keluar.create',compact('obats'));
     }
 
     /**
@@ -39,17 +42,27 @@ class ObatKeluarController extends Controller
      */
     public function store(Request $request)
     {
+
+        $request->validate([
+            'nama_pasien' => 'required',
+            'jumlah' => 'required',
+            'jumlah_pembayaran' => 'required'            
+        ]);
+        DB::table('obats')->where('id',$request->id_obat)->decrement('stok',$request->jumlah);
+    
+        ObatKeluar::create($request->all());
+
          // 1 VALIDEATE form nama
         // kalo validasi ggagal baka; dibalkin ke halaman create jenis obat 
-        $request->validate([
-            'nama' => 'required'            
-
-            // ,'email' => 'required|email'            
-        ]);
+        // $request->validate([
+        //     'nama_pasien' => 'required',
+        //     'jumlah' => 'required',
+        //     'jumlah_pembayaran' => 'required'
+        // ]);
     
         // 2 store data atau menyimpan data ke dalam database
         // eloquent bisa
-        ObatKeluar::create($request->all());
+        // ObatKeluar::create($request->all());
 
         // query builder juga bisa
         // DB::table('jenis_obats')->insert([
@@ -101,14 +114,18 @@ class ObatKeluarController extends Controller
     {
         //
         $request->validate([
-            'nama' => 'required'
+            'nama_pasien' => 'required',
+            'jumlah' => 'required',
+            'jumlah_pembayaran' => 'required'
         ]);
     
         // $jenisObat->update($request->all());
         // update requested id
         // update nama with value dari form input
         ObatKeluar::where('id', $id)->update([
-            'nama' => $request->nama // get value form name =  nama
+            'nama_pasien' => $request->nama_pasien, // get value form name =  nama
+            'jumlah' => $request->jumlah,
+            'jumlah_pembayaran' => $request->jumlah_pemnbayaran
         ]);
         
         return redirect()->route('obatkeluar.index')

@@ -42,28 +42,24 @@
                 </ul>
             </div>
             @endif
-            <form action="{{ route('obat.store') }}" method="POST">
+            <form action="{{ route('obat.store') }}" method="POST" enctype="multipart/form-data">
               @csrf
-              <div class="card-body">
-                <div class="form-group">
-                  <label for="">ID</label>                                
-                  <input type="number" name="id" class="form-control" placeholder="ID Obat">
-                </div>
-
-                <div class="form-group">                  
-                    <label>Jenis Obat</label>
-                    @foreach($obats as $Obat)
-                    <select class="form-control">
-                      @foreach($Obat->jenisObat()->get() as $nama)
-                      <option>{{ $nama->nama }}</option>                       
+                <div class="card-body">               
+                  <div class="form-group">                  
+                    <label>Jenis Obat</label> 
+                    <select class="form-control" name="id_jenis_obat">
+                      @foreach($jenisobats as $item)
+                      <option value="{{ $item->id }}">{{ $item->nama }}</option>  
                       @endforeach
                     </select>
-                    @endforeach
                 </div>
-
                 <div class="form-group">
                   <label for="">Nama Obat</label>                                
                   <input type="text" name="nama_obat" class="form-control" placeholder="Nama Obat">
+                </div>
+                <div class="form-group">
+                  <label for="">Stok</label>                                
+                  <input type="number" name="stok" class="form-control" placeholder="0" value="0">
                 </div>
                 <div class="form-group">
                   <label for="">Harga</label>                                
@@ -73,7 +69,20 @@
                   <label for="">Tanggal Kadaluwarsa</label>                                
                   <input type="date" name="tanggal_kadaluarsa" class="form-control" placeholder="Tanggal Kadaluwarsa">
                 </div>
+
                 <div class="form-group">
+                  <label for="">Gambar</label>   
+                  <input type="file" name="gambar" class="form-control @error('gambar') is-invalid @enderror" >
+              
+                  <!-- error message untuk title -->
+                  @error('gambar')
+                      <div class="alert alert-danger mt-2">
+                          {{ $message }}
+                      </div>
+                  @enderror
+                </div>
+
+                {{-- <div class="form-group">
                   <label for="exampleInputFile">Gambar</label>
                   <div class="input-group">
                     <div class="custom-file">
@@ -85,7 +94,7 @@
                     </div>
                   </div>
                 </div>
-              </div>
+              </div> --}}
               <!-- /.card-body -->
 
               <div class="card-footer">

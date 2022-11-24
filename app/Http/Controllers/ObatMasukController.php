@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\ObatMasuk;
+use App\Models\Obat;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
 class ObatMasukController extends Controller
@@ -15,7 +17,7 @@ class ObatMasukController extends Controller
     public function index()
     {
         //
-        $obat_masuks = ObatMasuk::latest()->paginate(5);
+        $obat_masuks = ObatMasuk::latest()->get();
     
         return view('obat_masuk.index',compact('obat_masuks'));
     }
@@ -28,7 +30,8 @@ class ObatMasukController extends Controller
     public function create()
     {
         //
-        return view('obat_masuk.create');
+        $obats = Obat::all(); 
+        return view('obat_masuk.create',compact('obats'));
     }
 
     /**
@@ -37,23 +40,46 @@ class ObatMasukController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+    // public function store(Request $request)
     public function store(Request $request)
-    {
-        //
-        $request->validate([
-            'nama' => 'required'            
+    {   
+        // $this->validate($request, [
+        //     'distributor' => 'required',
+        //     'id_obat' => 'required',      
+        //     'jumlah' => 'required',
+        //     'tanggal_masuk' => 'required'            
+        // ]);
 
-            // ,'email' => 'required|email'            
+        // $distributor = $request->input('distributor');
+        // $tanggal_masuk = $request->input('tanggal_masuk');
+        // $data = Obat::all(); 
+        // return compact('obats');
+        
+        //   // Insert Obat Racikan sebanyak yang diinputkan
+        // for ($i=0; $i < count($data['obats']); $i++) {
+        //     $this->insert([
+        //         'id_obat' => $data['obats'][$i],
+        //         'distributor' => $distributor,
+        //         'tanggal_masuk' => $tanggal_masuk,
+        //         'jumlah' => $data['jumlah'][$i],
+        //     ]);
+        //     DB::table('obats')->where('id', $data['obats'][$i])->increment('stok', $data['jumlah'][$i]);
+        // }
+
+        // OLD
+        // dd($request->all());
+
+        $request->validate([
+            'distributor' => 'required',
+            'id_obat' => 'required',
+            'jumlah' => 'required',
+            'tanggal_masuk' => 'required'             
         ]);
+        DB::table('obats')->where('id',$request->id_obat)->increment('stok',$request->jumlah);
     
-        // 2 store data atau menyimpan data ke dalam database
-        // eloquent bisa
         ObatMasuk::create($request->all());
 
-        // query builder juga bisa
-        // DB::table('jenis_obats')->insert([
-        //     'nama' => $request->nama
-        // ]);
+        // OLD
      
         // 3 menampilkan pesan sukses sewaktu berhasil input data
         return redirect()->route('obatmasuk.index')
@@ -82,10 +108,11 @@ class ObatMasukController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
-    {
+    {   
         //
         $obatMasuk = ObatMasuk::find($id);
-        return view('obat_masuk.edit',compact('obatMasuk'));
+        $obats = Obat::all(); 
+        return view('obat_masuk.edit',compact('obatMasuk','obats'));
     }
 
     /**
@@ -96,17 +123,24 @@ class ObatMasukController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
-    {
+    {   
         //
         $request->validate([
-            'nama' => 'required'
+            'distributor' => 'required',
+            'id_obat' => 'required',
+            'jumlah' => 'required',
+            'tanggal_masuk' => 'required'
         ]);
-    
-        // $jenisObat->update($request->all());
-        // update requested id
-        // update nama with value dari form input
+        $obatMasuk = ObatMasuk::find($id);
+        // $kembali = DB::table('obat_masuks')->where('id',$request->id_obat)->jumlah;
+        DB::table('obats')->where('id',$request->id_obat)->decrement('stok',$obatMasuk->jumlah);
+        DB::table('obats')->where('id',$request->id_obat)->increment('stok',$request->jumlah);
+
         ObatMasuk::where('id', $id)->update([
-            'nama' => $request->nama // get value form name =  nama
+            'distributor' => $request->distributor,
+            'id_obat' => $request->id_obat,
+            'jumlah' => $request->jumlah,
+            'tanggal_masuk' => $request->tanggal_masuk, // get value form name =  nama
         ]);
         
         return redirect()->route('obatmasuk.index')
@@ -122,7 +156,13 @@ class ObatMasukController extends Controller
     public function destroy($id)
     {
         //
+        $obatMasuk = ObatMasuk::find($id);
+        // $obatMasuk = ObatMasuk::find($id_obat);
+        DB::table('obats')->where('id',$id)->decrement('stok',$obatMasuk->jumlah);
+        // DB::table('obats')->where('id',$id)->decrement('stok',$obatMasuk->jumlah);
+       
         ObatMasuk::find($id)->delete();
+        
 
         // query builder
         // JenisObat::where('id',$id)->delete();

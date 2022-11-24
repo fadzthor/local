@@ -47,18 +47,15 @@
               <div class="card-body">
                 <div class="form-group">
                   <label for="">Pembeli</label>                                
-                  <input type="text" name="nama-pembeli" class="form-control" placeholder="Pembeli">
+                  <input type="text" name="nama_pasien" class="form-control" placeholder="Pembeli">
                 </div>
                 <div class="form-group">                  
-                  <label>Obat</label>
-                  {{-- @foreach($obats as $Obat) --}}
-                  <select class="form-control">
-                    {{-- @foreach($Obat->jenisObat()->get() as $nama) --}}
-                    <option>option</option>
-                    <option></option>                       
-                    {{-- @endforeach --}}
+                  <label>Obat</label> 
+                  <select class="form-control" name="id_obat">
+                    @foreach($obats as $item)
+                    <option value="{{ $item->id }}">{{ $item->nama_obat }}</option>                                             
+                    @endforeach
                   </select>
-                  {{-- @endforeach --}}
               </div>
                 <div class="form-group">
                   <label for="">Jumlah</label>                                

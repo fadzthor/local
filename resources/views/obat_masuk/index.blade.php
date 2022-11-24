@@ -43,8 +43,8 @@
                                         <th>Obat</th>
                                         <th>Jumlah</th>
                                         <th>Tanggal Masuk</th>                                        
-                                        <th>Tanggal Ditambahkan</th>
-                                        <th>Tanggal Diperbarui</th>
+                                        {{-- <th>Tanggal Ditambahkan</th>
+                                        <th>Tanggal Diperbarui</th> --}}
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
@@ -56,8 +56,8 @@
                                             <td>{{ $obatMasuk->id_obat }}</td>
                                             <td>{{ $obatMasuk->jumlah }}</td>
                                             <td>{{ $obatMasuk->tanggal_masuk }}</td>                                            
-                                            <td>{{ $obatMasuk->created_at }}</td>
-                                            <td>{{ $obatMasuk->updated_at }}</td>
+                                            {{-- <td>{{ $obatMasuk->created_at }}</td>
+                                            <td>{{ $obatMasuk->updated_at }}</td> --}}
                                             <td>
                                                 <form action="{{ route('obatmasuk.destroy', $obatMasuk->id) }}"
                                                     method="POST">

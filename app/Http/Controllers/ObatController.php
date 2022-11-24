@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Obat;
+use App\Models\JenisObat;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class ObatController extends Controller
 {
@@ -15,8 +17,10 @@ class ObatController extends Controller
     public function index()
     {
         //
-        $obats = Obat::latest()->paginate(5);    
-        return view('obat.index',compact('obats'));
+        $jenisobats = JenisObat::all(); 
+        $obats = Obat::latest()->get();    
+        
+        return view('obat.index',compact('obats','jenisobats'));
         
     }
 
@@ -28,9 +32,9 @@ class ObatController extends Controller
     public function create()
     {
         // create menu
-        $obats = Obat::all(); 
+        $jenisobats = JenisObat::all(); 
         // dd($obats);
-        return view('obat.create',['obats'=>$obats]);
+        return view('obat.create', compact('jenisobats'));
         
 
         // $obats = Obat::find($id);
@@ -46,27 +50,46 @@ class ObatController extends Controller
     public function store(Request $request)
     {
             // kalo validasi gagal bakal dibalkin ke halaman create jenis obat 
-            $request->validate([
-                'nama-obat' => 'required'            
-    
-                // ,'email' => 'required|email'            
-            ]);
-        
-            // 2 store data atau menyimpan data ke dalam database
-            // eloquent bisa
-            Obat::create($request->all());
-    
-            // query builder juga bisa
-            // DB::table('jenis_obats')->insert([
-            //     'nama' => $request->nama
+            // $request->validate([
+            //     'nama_obat' => 'required',
+            //     'id_jenis_obat' => 'required',      
+            //     'harga' => 'required',
+            //     'tanggal_kadaluarsa' => 'required',
+                
             // ]);
-         
-            // 3 menampilkan pesan sukses sewaktu berhasil input data
-            return redirect()->route('obat.index')
-                            ->with('success','Input data berhasil!');
+
+            // Obat::create($request->all());
+
+            // return redirect()->route('obat.index')
+            //                 ->with('success','Input data berhasil!');
+            //old no img
+
+            $this->validate($request, [
+                'nama_obat' => 'required',
+                'id_jenis_obat' => 'required',      
+                'harga' => 'required',
+                'stok' => 'required',
+                'tanggal_kadaluarsa' => 'required',
+                'gambar' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048'    
+            ]);
     
+            //upload gambar
+            $gambar = $request->file('gambar');
+            $gambar->storeAs('public/medicine', $gambar->hashName());
     
+            //create post
+            Obat::create([
+                'gambar' => $gambar->hashName(),
+                'nama_obat' => $request->nama_obat,
+                'id_jenis_obat' => $request->id_jenis_obat,
+                'harga' => $request->harga,
+                'stok' => $request->stok,
+                'tanggal_kadaluarsa' => $request->tanggal_kadaluarsa
+            ]);
     
+            //redirect to index
+            return redirect()->route('obat.index')->with('success','Input data berhasil!');
+                            
     }
 
     /**
@@ -91,9 +114,10 @@ class ObatController extends Controller
      */
     public function edit($id)
     {
-        //
+
+        $jenisobats = JenisObat::all(); 
         $Obat = Obat::find($id);
-        return view('obat.edit',compact('Obat'));
+        return view('obat.edit',compact('Obat','jenisobats'));
 
     }
 
@@ -108,29 +132,23 @@ class ObatController extends Controller
     {
         //
         $request->validate([
-            'nama-obat' => 'required',
-            'stok' => 'required',
+            'nama_obat' => 'required',
+            'id_jenis_obat' => 'required',      
             'harga' => 'required',
-            'tanggal-kadaluarsa' => 'required',
-        //     id',
-        // 'nama_obat',
-        // 'stok',
-        // 'harga',
-        // 'gambar',
-        // 'tanggal_kadaluarsa',
-        // 'created_at',
-        // 'updated_at',
-        // 'id_jenis_obat'
+            'stok' => 'required',   
+            'tanggal_kadaluarsa' => 'required' 
+            
         ]);
     
         // $jenisObat->update($request->all());
         // update requested id
         // update nama with value dari form input
         Obat::where('id', $id)->update([
-            'nama-obat' => $request->nama_obat, // get value form name =  nama
-            'stok' => $request->stok,
+            'nama_obat' => $request->nama_obat, // get value form name =  nama
+            'id_jenis_obat' => $request->id_jenis_obat,
             'harga' => $request->harga,
-            'tanggal-kadaluarsa' => $request->tanggal_kadaluarsa
+            'stok' => $request->stok,
+            'tanggal_kadaluarsa' => $request->tanggal_kadaluarsa
         ]);
         
         return redirect()->route('obat.index')

@@ -49,14 +49,14 @@
                       <label for="">Distributor</label>                  
                       <input type="text" name="distributor" value="{{ $obatMasuk->distributor }}" class="form-control" placeholder="Distributor">
                     </div>
-                    <div class="form-group">                  
+                    {{-- <div class="form-group">                  
                       <label>Obat</label> 
                       <select class="form-control" name="id_obat">
                         @foreach($obats as $item)
-                        <option value="{{ $item->id }}">{{ $item->nama_obat }}</option>  
+                        <option value="{{  $obatMasuk->id_obat == $item->id }}">{{ $item->nama_obat }}</option>  
                         @endforeach
                       </select>
-                  </div>
+                  </div> --}}
                     <div class="form-group">                      
                       <label for="">Obat</label>                  
                       <input type="text" name="id_obat" value="{{ $obatMasuk->id_obat }}" class="form-control" placeholder="Obat">
@@ -64,6 +64,10 @@
                     <div class="form-group">
                       <label for="">Jumlah</label>                  
                       <input type="number" name="jumlah" value="{{ $obatMasuk->jumlah }}" class="form-control" placeholder="Jumlah">
+                    </div>
+                    <div class="form-group">
+                      <label for="">Tanggal Masuk</label>                                
+                      <input type="date" name="tanggal_masuk"  value="{{ $obatMasuk->tanggal_masuk }}" class="form-control" placeholder="Tanggal Masuk">
                     </div>
                 </div>
                 <!-- /.card-body -->

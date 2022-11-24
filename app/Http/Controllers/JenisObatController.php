@@ -22,7 +22,7 @@ class JenisObatController extends Controller
         //     ->with('i', (request()->input('page', 1) - 1) * 5);
         // index data
         // jenis obats as array
-        $jenis_obats = JenisObat::latest()->paginate(5);
+        $jenis_obats = JenisObat::latest()->get();
     
         return view('jenis_obat.index',compact('jenis_obats'));
             

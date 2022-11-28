@@ -131,8 +131,9 @@ class ObatMasukController extends Controller
             'jumlah' => 'required',
             'tanggal_masuk' => 'required'
         ]);
+
         $obatMasuk = ObatMasuk::find($id);
-        // $kembali = DB::table('obat_masuks')->where('id',$request->id_obat)->jumlah;
+        
         DB::table('obats')->where('id',$request->id_obat)->decrement('stok',$obatMasuk->jumlah);
         DB::table('obats')->where('id',$request->id_obat)->increment('stok',$request->jumlah);
 

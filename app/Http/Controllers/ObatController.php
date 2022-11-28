@@ -21,6 +21,10 @@ class ObatController extends Controller
         $obats = Obat::latest()->get();    
         
         return view('obat.index',compact('obats','jenisobats'));
+
+         // tampil data
+        //  $Obat = Obat::find($id);
+        //  return view('obat.show',compact('Obat'));
         
     }
 
@@ -139,10 +143,7 @@ class ObatController extends Controller
             'tanggal_kadaluarsa' => 'required' 
             
         ]);
-    
-        // $jenisObat->update($request->all());
-        // update requested id
-        // update nama with value dari form input
+
         Obat::where('id', $id)->update([
             'nama_obat' => $request->nama_obat, // get value form name =  nama
             'id_jenis_obat' => $request->id_jenis_obat,

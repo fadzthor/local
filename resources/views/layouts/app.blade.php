@@ -4,31 +4,34 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Apotik Microdata</title>
-  <link rel="icon" type="image/png" href="http://microdataindonesia.co.id/media/images/web/mcdt.png" sizes="16x16">
+  <title>Apotek Microdata</title>
+  
+  <link rel="icon" type="image/png" href="{{ Storage::url('public/img/logo/logo.png') }}" sizes="16x16">
+  {{-- <link rel="icon" type="image/png" href="http://microdataindonesia.co.id/media/images/web/mcdt.png" sizes="16x16"> --}}
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <!-- IonIcons -->
   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
   <!-- Font Awesome -->
   <link rel="stylesheet" href="{{ url('assets/plugins/fontawesome-free/css/all.min.css') }}">
-    <!-- daterange picker -->
-    <link rel="stylesheet" href="{{ url('assets/plugins/daterangepicker/daterangepicker.css') }}">
-    <!-- iCheck for checkboxes and radio inputs -->
-    <link rel="stylesheet" href="{{ url('assets/plugins/icheck-bootstrap/icheck-bootstrap.min.css') }}">
-    <!-- Bootstrap Color Picker -->
-    <link rel="stylesheet" href="{{ url('assets/plugins/bootstrap-colorpicker/css/bootstrap-colorpicker.min.css') }}">
-    <!-- Tempusdominus Bootstrap 4 -->
-    <link rel="stylesheet" href="{{ url('assets/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css') }}">
-    <!-- Select2 -->
-    <link rel="stylesheet" href="{{ url('assets/plugins/select2/css/select2.min.css') }}">
-    <link rel="stylesheet" href="{{ url('assets/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css') }}">
-    <!-- Bootstrap4 Duallistbox -->
-    <link rel="stylesheet" href="{{ url('assets/plugins/bootstrap4-duallistbox/bootstrap-duallistbox.min.css') }}">
-    <!-- BS Stepper -->
-    <link rel="stylesheet" href="{{ url('assets/plugins/bs-stepper/css/bs-stepper.min.css') }}">
-    <!-- dropzonejs -->
-    <link rel="stylesheet" href="{{ url('assets/plugins/dropzone/min/dropzone.min.css') }}">
+  <!-- daterange picker -->
+  <link rel="stylesheet" href="{{ url('assets/plugins/daterangepicker/daterangepicker.css') }}">
+  <!-- iCheck for checkboxes and radio inputs -->
+  <link rel="stylesheet" href="{{ url('assets/plugins/icheck-bootstrap/icheck-bootstrap.min.css') }}">
+  <!-- Bootstrap Color Picker -->
+  <link rel="stylesheet" href="{{ url('assets/plugins/bootstrap-colorpicker/css/bootstrap-colorpicker.min.css') }}">
+  <!-- Tempusdominus Bootstrap 4 -->
+  <link rel="stylesheet" href="{{ url('assets/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css') }}">
+  <!-- Select2 -->
+  <link rel="stylesheet" href="{{ url('assets/plugins/select2/css/select2.min.css') }}">
+  <link rel="stylesheet" href="{{ url('assets/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css') }}">
+  <!-- Bootstrap4 Duallistbox -->
+  <link rel="stylesheet" href="{{ url('assets/plugins/bootstrap4-duallistbox/bootstrap-duallistbox.min.css') }}">
+  <!-- BS Stepper -->
+  <link rel="stylesheet" href="{{ url('assets/plugins/fff/css/bs-stepper.min.css') }}">
+  {{-- <link rel="stylesheet" href="{{ url('assets/plugins/bs-stepper/css/bs-stepper.min.css') }}"> --}}
+  <!-- dropzonejs -->
+  <link rel="stylesheet" href="{{ url('assets/plugins/dropzone/min/dropzone.min.css') }}">
   <!-- Data Table -->
   <link rel="stylesheet" href="{{ url('assets/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
   <link rel="stylesheet" href="{{ url('assets/plugins/datatables-responsive/css/responsive.bootstrap4.min.css') }}">
@@ -70,7 +73,7 @@
 <script src="{{ url('assets/plugins/jquery/jquery.min.js') }}"></script>
 <script src="{{ url('assets/plugins/jquery-ui/jquery-ui.min.js') }}"></script>
 <!-- AdminLTE -->
-<script src="{{ url('assets/dist/js/adminlte.min.js.js') }}"></script>
+<script src="{{ url('assets/dist/js/adminlte.min.js') }}"></script>
 <script src="{{ url('assets/dist/js/pages/dashboard.js') }}"></script>s
 <script src="{{ url('assets/dist/js/pages/dashboard2.js') }}"></script>
 <script src="{{ url('assets/dist/js/pages/dashboard3.js') }}"></script>
@@ -98,16 +101,16 @@
 <!-- dropzonejs -->
 <script src="{{ url('assets/plugins/dropzone/min/dropzone.min.js') }}"></script>
 <!-- Summernote -->
-<script src="{{ url('assets/plugins/summernote/summernote-bs4.minjs') }}"></script>
+<script src="{{ url('assets/plugins/summernote/summernote-bs4.min.js') }}"></script>
 <!-- overlayScrollbars -->
-<script src="{{ url('assets/plugins/overlayScrollbars/js/jquery.overlayScrollbars.minjs') }}"></script>
+<script src="{{ url('assets/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js') }}"></script>
 <!-- ChartJS -->
-<script src="{{ url('assets/plugins/chart.js/Chart.minjs') }}"></script>
+<script src="{{ url('assets/plugins/chart.js/Chart.min.js') }}"></script>
 <!-- Sparkline -->
-<script src="{{ url('assets/plugins/sparklines/sparklinejs') }}"></script>
+<script src="{{ url('assets/plugins/sparklines/sparkline.js') }}"></script>
 <!-- JQVMap -->
-<script src="{{ url('assets/plugins/jqvmap/jquery.vmap.minjs') }}"></script>
-<script src="{{ url('assets/plugins/jqvmap/maps/jquery.vmap.usajs') }}"></script>
+<script src="{{ url('assets/plugins/jqvmap/jquery.vmap.min.js') }}"></script>
+<script src="{{ url('assets/plugins/jqvmap/maps/jquery.vmap.usa.js') }}"></script>
 <!-- DataTables  & Plugins -->
 <script src="{{ url('assets/plugins/datatables/jquery.dataTables.min.js') }}"></script>
 <script src="{{ url('assets/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') }}"></script>

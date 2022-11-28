@@ -99,7 +99,8 @@ class ObatKeluarController extends Controller
     {
          //
          $obatKeluar = ObatKeluar::find($id);
-         return view('obat_keluar.edit',compact('obatKeluar'));
+         $obats = Obat::all(); 
+         return view('obat_keluar.edit',compact('obatKeluar','obats'));
  
     }
 
@@ -118,14 +119,19 @@ class ObatKeluarController extends Controller
             'jumlah' => 'required',
             'jumlah_pembayaran' => 'required'
         ]);
-    
+
+        $obatKeluar = ObatKeluar::find($id);
+
+        DB::table('obats')->where('id',$request->id_obat)->increment('stok',$obatKeluar->jumlah);
+        DB::table('obats')->where('id',$request->id_obat)->decrement('stok',$request->jumlah);
+
         // $jenisObat->update($request->all());
         // update requested id
         // update nama with value dari form input
         ObatKeluar::where('id', $id)->update([
             'nama_pasien' => $request->nama_pasien, // get value form name =  nama
             'jumlah' => $request->jumlah,
-            'jumlah_pembayaran' => $request->jumlah_pemnbayaran
+            'jumlah_pembayaran' => $request->jumlah_pembayaran
         ]);
         
         return redirect()->route('obatkeluar.index')
@@ -141,6 +147,9 @@ class ObatKeluarController extends Controller
     public function destroy($id)
     {
         //
+        $obatKeluar = ObatKeluar::find($id);
+        // $obatMasuk = ObatMasuk::find($id_obat);
+        DB::table('obats')->where('id',$obatKeluar->id_obat)->increment('stok',$obatKeluar->jumlah);
         ObatKeluar::find($id)->delete();
 
         // query builder

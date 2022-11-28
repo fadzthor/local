@@ -4,6 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\Dashboard;
 use Illuminate\Http\Request;
+use App\Models\JenisObat;
+use App\Models\Obat;
+use App\Models\ObatMasuk;
+use App\Models\ObatKeluar;
+
 
 class DashboardController extends Controller
 {
@@ -15,9 +20,16 @@ class DashboardController extends Controller
     public function index()
     {
         //
+        // $countO = Obat::where('stok')->get()->count();
+        // $countO = Obat::where('stok')->count('stok');
+        // $countO = Obat::where('stok')->get('stok')->count('stok');
+        $countJO = JenisObat::count();
+        $countO = Obat::count();
+        $countOM = ObatMasuk::count();
+        $countOK = ObatKeluar::count();
         
     
-        return view('Dashboard.index');
+        return view('Dashboard.index',compact('countJO','countO','countOM','countOK'));
     }
 
     /**
